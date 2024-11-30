@@ -44,9 +44,8 @@ cp .env.example .env
 docker-compose up -d --build
 ```
 To ingest traffic, it is recommended to create a shared bind mount with the docker-compose. One convenient way to set this up is as follows:
-1. On the vulnbox, start a rotating packet sniffer (e.g. tcpdump, suricata, ...)
-1. Using rsync, copy complete captures to the machine running tulip (e.g. to /traffic)
-1. Add a bind to the assembler service so it can read /traffic
+1. On the vulnbox, start start [suricata](https://github.com/cato447/suricata-setup)
+2. Run the ./suricata_output/sync.sh script
 
 The ingestor will use inotify to watch for new pcap's and suricata logs. No need to set a chron job.
 
